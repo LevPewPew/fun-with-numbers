@@ -1,9 +1,17 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 
 function BtnReset(props) {
-  console.log(props.setCounter);
   return (
-    <button onClick={() => props.setCounter(0)}>RESET</button>
+    <div className="BtnReset">
+      <button
+        onClick={() => {
+          clearTimeout(props.timer.current);
+          props.setCounter(0);
+        }}
+      >
+        RESET
+      </button>
+    </div>
   )
 }
 

@@ -1,8 +1,24 @@
-import React, {useEffect} from 'react';
+import React, { useState } from 'react';
 
 function BtnPause(props) {
+  const [running, setRunning] = useState(true);
+
   return (
-    <h3>BtnPause Component</h3>
+    <div className="BtnReset">
+      <button
+        onClick={() => {
+          if (running) {
+            clearTimeout(props.timer.current);
+            setRunning(false);
+          } else {
+            props.timer.current = setTimeout(() => props.setCounter(props.counter + 1), props.DELAY);
+            setRunning(true);
+          }
+        }}
+      >
+        PAUSE
+      </button>
+    </div>
   )
 }
 

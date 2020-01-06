@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { render } from 'react-dom';
 import Counter from './components/Counter';
 import DataDisplay from './components/DataDisplay';
 import BtnPause from './components/BtnPause';
 import BtnReset from './components/BtnReset';
-import BtnRandom from './components/BtnRandom';
+// import BtnRandom from './components/BtnRandom';
 
 const DELAY = 1000;
 
 function App() {
   const [counter, setCounter] = useState(0);
+  const timer = useRef(false);
   
   useEffect(() => {
-    setTimeout(() => setCounter(counter + 1), DELAY);
-  });
+    timer.current = setTimeout(() => setCounter(counter + 1), DELAY);
+  }, [counter]);
 
   return (
     <div className="app-container">
@@ -26,15 +27,23 @@ function App() {
       <BtnPause
         counter={counter}
         setCounter={setCounter}
+        timer={timer}
       />
       <BtnReset
         counter={counter}
+        setCounter={setCounter}
+        timer={timer}
+        DELAY={DELAY}
       />
-      <BtnRandom
+      {/* <BtnRandom
         counter={counter}
-      />
+        setCounter={setCounter}
+        timer={timer}
+      /> */}
     </div>
   )
 }
 
 render(<App />, document.getElementById("root"));
+
+{/* <button onClick={() => props.setCounter(0)}>RESET</button> */}
