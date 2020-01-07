@@ -1,1 +1,0 @@
-- bug: spamming the reset button stops counter entirely

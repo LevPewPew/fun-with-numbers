@@ -9,7 +9,8 @@ import BtnRandom from './components/BtnRandom';
 const DELAY = 1000;
 
 function App() {
-  const [counter, setCounter] = useState({value: 0}); // this state is on object instead of just a primitive integer so as to avoid a bug of the setTimeout not being started when hitting the Reset button twice within 1 second. If it was just a primitive, then doing so would mean the counter state has technically not changed and so the useEffect won't trigger the second click of the Reset button. 
+  // this state is on object instead of just a primitive integer so as to avoid a bug of the setTimeout not being started when hitting the Reset button twice within 1 second. If it was just a primitive, then doing so would mean the counter state has technically not changed and so the useEffect won't trigger the second click of the Reset button.
+  const [counter, setCounter] = useState({value: 0}); 
   const [factNum, setFactNum] = useState(0);
   const timer = useRef(false);
   
