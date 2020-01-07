@@ -3,7 +3,7 @@ import React from 'react';
 function Counter(props) {
   return (
     <div className="Counter">
-      <p>{props.counter}</p>
+      <p>{Math.floor(props.counter)}</p>
     </div>
   );
 }

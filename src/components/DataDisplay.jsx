@@ -22,8 +22,8 @@ function DataDisplay(props) {
 
   // could potentially move some or all of the setFactNum logic into the buttons, but it is actually good to have it in here if there are multiple things that could reset
   useEffect(() => {
-    if (props.counter % SECONDS_PER_FACT === 0) {
-      if (props.counter === 0) {
+    if (Math.floor(props.counter) % SECONDS_PER_FACT === 0) {
+      if (Math.floor(props.counter) === 0) {
         props.setFactNum(1);
         getTrivia(0);
       } else {
