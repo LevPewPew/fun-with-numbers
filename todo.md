@@ -2,6 +2,4 @@
 
 - do the random button
 
-- make the reset also reset the facts
-
 - bug: spamming the reset button stops counter entirely

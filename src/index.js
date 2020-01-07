@@ -4,7 +4,7 @@ import Counter from './components/Counter';
 import DataDisplay from './components/DataDisplay';
 import BtnPause from './components/BtnPause';
 import BtnReset from './components/BtnReset';
-// import BtnRandom from './components/BtnRandom';
+import BtnRandom from './components/BtnRandom';
 
 const DELAY = 1000;
 
@@ -35,11 +35,11 @@ function App() {
         timer={timer}
         DELAY={DELAY}
       />
-      {/* <BtnRandom
+      <BtnRandom
         counter={counter}
         setCounter={setCounter}
         timer={timer}
-      /> */}
+      />
     </div>
   )
 }

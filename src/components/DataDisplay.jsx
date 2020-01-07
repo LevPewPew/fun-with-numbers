@@ -9,16 +9,27 @@ function DataDisplay(props) {
   const [data, setData] = useState('');
   const [error, setError] = useState('');
 
+  function getTrivia(num) {
+    Axios.get(`http://numbersapi.com/${num}/trivia`)
+    .then((res) => {
+      setData(res.data);
+    })
+    .catch((err) => {
+      if (err.response) {
+        setError(err.response.statusText);
+      }
+    });
+  }
+
   useEffect(() => {
     if (props.counter % SECONDS_PER_FACT === 0) {
-      Axios.get(`http://numbersapi.com/${factNum}/trivia`)
-        .then((res) => {
-          setData(res.data);
-          setFactNum(factNum + 1);
-        })
-        .catch((err) => {
-          setError(err.response.statusText);
-        });
+      if (props.counter === 0) {
+        setFactNum(1);
+        getTrivia(0);
+      } else {
+        setFactNum(factNum + 1);
+        getTrivia(factNum);
+      }
     }
   }, [props.counter]);
 

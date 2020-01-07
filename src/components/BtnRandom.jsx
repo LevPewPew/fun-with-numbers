@@ -1,18 +1,18 @@
-// import React from 'react';
+import React from 'react';
 
-// function BtnRandom() {
-//   return (
-//     <div className="BtnReset">
-//       <button
-//         onClick={() => {
-//           clearTimeout(props.timer.current);
-//           props.setCounter(0);
-//         }}
-//       >
-//         RANDOM
-//       </button>
-//     </div>
-//   )
-// }
+function BtnRandom(props) {
+  return (
+    <div className="BtnRandom">
+      <button
+        onClick={() => {
+          clearTimeout(props.timer.current);
+          props.setCounter(Math.floor(Math.random() * 35001));
+        }}
+      >
+        RANDOM
+      </button>
+    </div>
+  )
+}
 
-// export default BtnRandom;
+export default BtnRandom;
