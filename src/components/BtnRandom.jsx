@@ -5,8 +5,10 @@ function BtnRandom(props) {
     <div className="BtnRandom">
       <button
         onClick={() => {
+          let randNum = Math.floor(Math.random() * 35001);
           clearTimeout(props.timer.current);
-          props.setCounter(Math.floor(Math.random() * 35001));
+          props.setCounter(randNum);
+          props.setFactNum(randNum);
         }}
       >
         RANDOM

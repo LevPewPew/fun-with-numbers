@@ -10,6 +10,7 @@ const DELAY = 1000;
 
 function App() {
   const [counter, setCounter] = useState(0);
+  const [factNum, setFactNum] = useState(0);
   const timer = useRef(false);
   
   useEffect(() => {
@@ -23,22 +24,26 @@ function App() {
       />
       <DataDisplay
         counter={counter}
-      />
+        factNum={factNum}
+        setFactNum={setFactNum}
+        />
       <BtnPause
         counter={counter}
         setCounter={setCounter}
         timer={timer}
-      />
+        />
       <BtnReset
         counter={counter}
         setCounter={setCounter}
         timer={timer}
         DELAY={DELAY}
-      />
+        />
       <BtnRandom
         counter={counter}
         setCounter={setCounter}
         timer={timer}
+        factNum={factNum}
+        setFactNum={setFactNum}
       />
     </div>
   )
