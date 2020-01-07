@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import '../styles/BtnPause.css';
 
 function BtnPause(props) {
   const [running, setRunning] = useState(true);
 
   return (
-    <div className="BtnReset">
-      <button
+    <div className="BtnPause">
+      <button style={running ? {background: "red"} : {background: "green"}}
         onClick={() => {
           if (running) {
             clearTimeout(props.timer.current);
