@@ -1,14 +1,18 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-function BtnRandom(props) {
+function BtnRandom() {
+  const timerId = useSelector((state) => state.timerId);
+  const dispatch = useDispatch();
+
   return (
     <div className="BtnRandom">
       <button
         onClick={() => {
+          clearTimeout(timerId);
           let randNum = Math.floor(Math.random() * 35001);
-          clearTimeout(props.timer.current);
-          props.setCounter(randNum);
-          props.setFactNum(randNum);
+          dispatch({type: "UPDATE_COUNTER", newCounter: {value: randNum}});
+          dispatch({type: "UPDATE_FACT_NUM", newFactNum: randNum});
         }}
       >
         RANDOM

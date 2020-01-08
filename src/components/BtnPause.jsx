@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import '../styles/BtnPause.css';
 
-function BtnPause(props) {
+function BtnPause() {
+  const DELAY = useSelector((state) => state.DELAY);
+  const counter = useSelector((state) => state.counter);
+  const timerId = useSelector((state) => state.timerId);
+  const dispatch = useDispatch();
   const [running, setRunning] = useState(true);
 
   return (
@@ -9,10 +14,14 @@ function BtnPause(props) {
       <button style={running ? {background: "red"} : {background: "green"}}
         onClick={() => {
           if (running) {
-            clearTimeout(props.timer.current);
+            clearTimeout(timerId);
             setRunning(false);
           } else {
-            props.timer.current = setTimeout(() => props.setCounter(props.counter + 1), props.DELAY);
+            let id = setTimeout(() => dispatch({
+              type: "UPDATE_COUNTER",
+              newCounter: {value: counter.value + 1}
+            }), DELAY);
+            dispatch({type: "UPDATE_TIMER_ID", newTimerId: id});
             setRunning(true);
           }
         }}

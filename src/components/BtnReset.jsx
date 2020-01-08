@@ -1,12 +1,16 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-function BtnReset(props) {
+function BtnReset() {
+  const timerId = useSelector((state) => state.timerId);
+  const dispatch = useDispatch();
+
   return (
     <div className="BtnReset">
       <button
         onClick={() => {
-          clearTimeout(props.timer.current);
-          props.setCounter({value: 0});
+          clearTimeout(timerId);
+          dispatch({type: "UPDATE_COUNTER", newCounter: {value: 0}});
         }}
       >
         RESET

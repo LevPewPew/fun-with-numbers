@@ -1,10 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Axios from 'axios';
+import { shallowEqual } from '@babel/types';
 import ErrorDisplay from './ErrorDisplay';
 
 const SECONDS_PER_FACT = 3;
 
-function DataDisplay(props) {
+function DataDisplay() {
+  const counter = useSelector((state) => state.counter);
+  const factNum = useSelector((state) => state.factNum);
+  const dispatch = useDispatch();
   const [data, setData] = useState('');
   const [error, setError] = useState('');
 
@@ -22,18 +27,17 @@ function DataDisplay(props) {
     });
   }
 
-  // could potentially move some or all of the setFactNum logic into the buttons, but it is actually good to have it in here if there are multiple things that could reset
   useEffect(() => {
-    if (props.counter.value % SECONDS_PER_FACT === 0) {
-      if (props.counter.value === 0) {
-        props.setFactNum(1);
+    if (counter.value % SECONDS_PER_FACT === 0) {
+      if (counter.value === 0) {
+        dispatch({type: "UPDATE_FACT_NUM", newFactNum: 1})
         getTrivia(0);
       } else {
-        props.setFactNum(props.factNum + 1);
-        getTrivia(props.factNum);
+        dispatch({type: "UPDATE_FACT_NUM", newFactNum: factNum + 1})
+        getTrivia(factNum);
       }
     }
-  }, [props.counter]);
+  }, [counter]);
 
   return (
     <div className="DataDisplay">
