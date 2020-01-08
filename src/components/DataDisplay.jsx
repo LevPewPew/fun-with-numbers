@@ -16,6 +16,8 @@ function DataDisplay(props) {
     .catch((err) => {
       if (err.response) {
         setError(err.response.statusText);
+      } else {
+        setError("Error!");
       }
     });
   }
